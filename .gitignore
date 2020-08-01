@@ -1,0 +1,5 @@
+# created by virtualenv automatically
+db.sqlite3
+settings.py
+# 文件夹
+__pycache__/
