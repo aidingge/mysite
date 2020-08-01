@@ -1,0 +1,2 @@
+# mysite
+Django博客
