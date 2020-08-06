@@ -7,8 +7,10 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.conf import settings
 from .forms import LoginForm, RegForm, ChangeNicknameForm, BindEmailForm, ChangePasswordForm, ForgotPasswordForm
 from .models import Profile
+from celery_sendmail.tasks import send_mail_task  # 导入celery任务
 
 
 def login_for_medal(request):
@@ -135,14 +137,20 @@ def send_verification_code(request):
             request.session[send_for] = code
             request.session['send_code_time'] = now
 
-            # 发送邮件
+            # 发送邮件 celery异步执行
+            send_mail_task.delay(
+                '绑定邮箱',
+                '验证码：%s' % code,
+                email)
+            '''
             send_mail(
                 '绑定邮箱',
                 '验证码：%s' % code,
-                '2465541453@qq.com',
+                settings.EMAIL_HOST_USER,
                 [email],
                 fail_silently=False,
             )
+            '''
             data['status'] = 'SUCCESS'
     else:
         data['status'] = 'ERROR'

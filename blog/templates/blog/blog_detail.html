@@ -2,7 +2,7 @@
 {% block title %}{{ blog.title }}{% endblock %}
 {% block nav_blog_active %}active{% endblock %}
 
-{% load staticfiles %}
+{% load static %}
 {% load comment_tags %}
 {% load likes_tags %}
 
@@ -23,8 +23,13 @@
                     <li>分类：<a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li>
                     <li>发表日期：{{ blog.created_time|date:"Y-m-d H:i:s" }}</li>
                     <li>阅读({{ blog.get_read_num }})</li>
-                    <li>评论({% get_comment_count blog %})</li>
-                </ul>              
+                    <li><a href="#comment_list">评论({% get_comment_count blog %})</a></li>
+                </ul>
+                {# 添加回到顶部按钮 #}
+                <div class="text-center" id="to-top" style="display: block;" onclick="pageScroll()">
+                    <i class="glyphicon glyphicon-chevron-up" id="btn-top" title="回到顶部"></i>
+                </div>
+                {# 博客内容 #}
                 <div class="blog-content">{{ blog.content|safe }}</div>
                 <div class="like" onclick="likeChange(this, '{% get_content_type blog %}', {{ blog.pk }})">
                     <span class="glyphicon glyphicon-thumbs-up {% get_like_status blog %}"></span>
@@ -259,6 +264,22 @@
                 }
             });
         }
+        if(window.location.hash){
+            $('html').animate({
+                scrollTop: $('#window.location.hash').offset().top - 60
+            }, 500);
+        }
+
+    function pageScroll(){
+        //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+        window.scrollBy(0,-100);
+        //延时递归调用，模拟滚动向上效果
+        scrolldelay = setTimeout('pageScroll()',30);
+        //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
+        var isTop=document.documentElement.scrollTop+document.body.scrollTop;
+        //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
+        if(isTop===0) clearTimeout(scrolldelay);
+    }
 
     </script>
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block title %}我的网站{% endblock %}
 {% block nav_blog_active %}active{% endblock %}
 
-{% load staticfiles %}
+{% load static %}
 {% load comment_tags %}
 {% load likes_tags %}
 
@@ -19,16 +19,16 @@
                     <div class="panel-heading">{% block blog_list_title %}博客列表{% endblock %}</div>
                     <div class="panel-body">
                         {% for blog in blogs %}
-                            <div class="blog">
-                                <h3><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
-                                <p class="blog-info">
+                            <div class="blog media mb-1 mb-sm-2 p-2 p-lg-3">
+                                <h3 class="mt-0 font-weight-bold text-info f-17"><a href="{% url 'blog_detail' blog.pk %}" target="_blank">{{ blog.title }}</a></h3>
+                                <p class="blog-info text-muted mb-2 f-12">
                                     <span class="glyphicon glyphicon-tag"></span> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>&nbsp;&nbsp;
                                     <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d" }}&nbsp;&nbsp;
                                     阅读({{ blog.get_read_num }})&nbsp;&nbsp;
                                     评论({% get_comment_count blog %})&nbsp;&nbsp;
                                     点赞({% get_like_count blog %})
                                 </p>
-                                <p>{{ blog.content|striptags|truncatechars:120 }}</p>
+                                <p class="d-block d-sm-none mb-2 f-15" style="margin-top: 1em">{{ blog.content|striptags|truncatechars:120 }}</p>
                             </div>
                         {% empty %}
                             <div class="blog">

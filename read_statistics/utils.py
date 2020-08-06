@@ -22,6 +22,8 @@ def read_statistics_once_read(request, obj):
         readDetail.save()
     return key
 
+
+# 获取近7日每天的阅读数量
 def get_seven_days_read_data(content_type):
     today = timezone.now().date()
     dates = []
@@ -34,10 +36,12 @@ def get_seven_days_read_data(content_type):
         read_nums.append(result['read_num_sum'] or 0)
     return dates, read_nums
 
+
 def get_today_hot_data(content_type):
     today = timezone.now().date()
     read_details = ReadDetail.objects.filter(content_type=content_type, date=today).order_by('-read_num')
     return read_details[:7]
+
 
 def get_yesterday_hot_data(content_type):
     today = timezone.now().date()

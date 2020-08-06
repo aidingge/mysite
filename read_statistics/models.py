@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
 
 class ReadNum(models.Model):
-    read_num = models.IntegerField(default=0)
+    read_num = models.IntegerField(default=0, verbose_name='阅读计数')
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
@@ -21,8 +21,8 @@ class ReadNumExpandMethod():
             return 0
 
 class ReadDetail(models.Model):
-    date = models.DateField(default=timezone.now)
-    read_num = models.IntegerField(default=0)
+    date = models.DateField(default=timezone.now, verbose_name='时间')
+    read_num = models.IntegerField(default=0, verbose_name='阅读计数')
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
