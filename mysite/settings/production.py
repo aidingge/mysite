@@ -90,6 +90,7 @@ ADMINS=(
     ('admin', '2465541453@qq.com'),
 )
 # 日志文件
+# 日志文件
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -99,9 +100,9 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': '/root/mysite_debug.log',
         },
-        'mail_admins':{
-            'level':'Error',
-            'class':'django.utils.log.AdminEmailHandler',
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
         }
     },
     'loggers': {
@@ -110,10 +111,10 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'django.request':{
-            'handlers':['mail_admins'],
-            'level':'ERROR',
-            'propagate':False,
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
         },
     },
 }
