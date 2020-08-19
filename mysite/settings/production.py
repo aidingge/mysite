@@ -24,7 +24,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['39.99.247.138', ]
+ALLOWED_HOSTS = ['39.99.247.138', '*']
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -86,7 +86,7 @@ EMAIL_FROM = '2465541453@qq.com'
 
 # celery 设置
 djcelery.setup_loader()
-ADMINS=(
+ADMINS = (
     ('admin', '2465541453@qq.com'),
 )
 # 日志文件
