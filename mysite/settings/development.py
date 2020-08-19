@@ -9,9 +9,7 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
 import os
-import djcelery
 from .base import *
 
 
@@ -26,18 +24,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-
-WSGI_APPLICATION = 'mysite.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',  # 数据库主机
+        'HOST': 'localhost',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'hjx',  # 数据库用户名python man
         'PASSWORD': '123456',  # 数据库用户密码
@@ -57,22 +50,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -88,6 +65,3 @@ EMAIL_SUBJECT_PREFIX = '[我的博客网站]'
 EMAIL_USE_TLS = False  # 与SMTP服务器通信时，是否启动TLS链接（安全连接）
 EMAIL_FROM = '2465541453@qq.com'
 
-
-# celery 设置
-djcelery.setup_loader()
