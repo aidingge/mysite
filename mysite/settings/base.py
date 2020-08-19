@@ -164,7 +164,7 @@ CKEDITOR_CONFIGS = {
 EACH_PAGE_BLOGS_NUMBER = 7
 
 # 缓存设置
-
+'''
 CACHES = {
     # 数据库缓存
     'default': {
@@ -186,7 +186,7 @@ CACHES = {
         }
     }
 }
-'''
+
 # django-notifications-hq设置添加额外数据
 DJANGO_NOTIFICATIONS_CONFIG = {
     'USE_JSONFIELD': True,
