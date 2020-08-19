@@ -78,7 +78,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/root/mysite_debug.log',
+            'filename': '/root/mysite_debug.log',  # 日志文件 要有写权限 chmod 666 mysite_debug.log
         },
         'mail_admins': {
             'level': 'ERROR',

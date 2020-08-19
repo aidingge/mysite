@@ -4,3 +4,4 @@ requirements.txt
 settings.py
 # 文件夹
 __pycache__/
+static_collected
