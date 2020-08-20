@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'djcelery',
-    'django_celery_beat',
     'blog',
     'read_statistics',
     'comment',
