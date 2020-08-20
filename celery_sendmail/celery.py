@@ -3,7 +3,7 @@ from celery import Celery
 import os
 
 # 为celery设置环境变量
-os.environ.setdefault("DJANGO_SETTIONGS_MODULE", "mysite.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings.production")
 # 创建celery app
 app = Celery('celery_sendmail')
 # 从单独的配置模块中加载配置
