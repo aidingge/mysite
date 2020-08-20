@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}我的网站{% endblock %}
 {% block nav_blog_active %}active{% endblock %}
-
+{% load cache %}
 {% load static %}
 {% load comment_tags %}
 {% load likes_tags %}
 
 {% block header_extends %}
-    <link rel="stylesheet" href="{% static 'blog/../../static/blog/../../static/blog/blog.css' %}">
+    <link rel="stylesheet" href="{% static '../../static/blog/blog.css' %}">
 {% endblock %}
 
 {# 页面内容 #}
@@ -78,6 +78,8 @@
                     </p>
                 </div>
             </div>
+
+        {% cache 180 class_cache %}
             <div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">博客分类</div>
@@ -110,6 +112,7 @@
                     </div>
                 </div>
             </div>
+        {% endcache %}
         </div>
     </div>
 {% endblock %}

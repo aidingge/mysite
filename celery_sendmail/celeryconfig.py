@@ -1,8 +1,11 @@
 from datetime import timedelta
+import os
 from celery.schedules import crontab
 import djcelery
 # celery 设置
 djcelery.setup_loader()
+if not os.getenv('DJANGO_SETTINGS_MODULE'):
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings.production'
 # 设置结果存储
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 # 使用django-celery默认的数据库调度模型
