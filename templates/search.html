@@ -22,10 +22,21 @@
                     <h3>搜索"{{ search_words }}",找到{{ search_blogs_count }}个结果</h3>
                     <hr>
                     {% for blog in page_of_blogs %}
-                        <a href="{% url 'blog_detail' blog.pk %}">
-                            <h4>{{ blog.title }}</h4>
-                        </a>
-                        <p>{{ blog.content | striptags |truncatechars_html:100 }}</p>
+                        <div class="blog media mb-1 mb-sm-2 p-2 p-lg-3">
+                            <h3 class="mt-0 font-weight-bold text-info f-17"><a href="{% url 'blog_detail' blog.pk %}" target="_blank">{{ blog.title }}</a></h3>
+                            <p class="blog-info text-muted mb-2 f-12">
+                                <span class="glyphicon glyphicon-tag"></span> <a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a>&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d" }}&nbsp;&nbsp;
+                            </p>
+                            <p class="d-block d-sm-none mb-2 f-15" style="margin-top: 1em">{{ blog.content|striptags|truncatechars:120 }}</p>
+                            <hr>
+                        </div>
+
+                        <!-- <a href="{% url 'blog_detail' blog.pk %}"> -->
+                        <!--    <h4>{{ blog.title }}</h4>-->
+                        <!-- </a>-->
+                        <!-- <p>{{ blog.content | striptags |truncatechars_html:100 }}</p> -->
+
                     {% empty %}
                         <p>搜索不到任何内容，换个关键词试试吧~</p>
                     {% endfor %}
