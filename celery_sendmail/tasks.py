@@ -37,13 +37,11 @@ def send_mail_one_week():
         # 计算时间差 天数
         days = rrule.rrule(freq=rrule.DAILY, dtstart=lastday, until=today)
         # 分钟时间间隔
-        start_time = last.replace(tzinfo=utc)
-        end_time = now.replace(tzinfo=utc)
-        minutes = (start_time - end_time).seconds
-        #if days.count() >= 7:
+        #start_time = last.replace(tzinfo=utc)
+        #end_time = now.replace(tzinfo=utc)
+        #minutes = (start_time - end_time).seconds
+        if days.count() >= 7:
             # 超过7天未登录将邮件加入邮件列表
-        #    email_list.append(user.email)
-        if minutes>120:
             email_list.append(user.email)
     # 发送邮件
     subject = "学习提醒"
