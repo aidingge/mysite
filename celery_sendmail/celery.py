@@ -9,5 +9,5 @@ app = Celery('celery_sendmail')
 # 从单独的配置模块中加载配置
 app.config_from_object("celery_sendmail.celeryconfig")
 # 设置app自动加载任务
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+app.autodiscover_tasks(lambda: settings.base.INSTALLED_APPS)
 

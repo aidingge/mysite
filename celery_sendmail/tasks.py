@@ -45,7 +45,7 @@ def send_mail_one_week():
             email_list.append(user.email)
     # 发送邮件
     subject = "学习提醒"
-    msg = "hello~您已经超过2分钟没有登录博客网站更新博客了哦，最近是不是懒惰了，快快登录博客网站学习吧！\n"
+    msg = "hello~您已经超过7天没有登录博客网站更新博客了哦，最近是不是懒惰了，快快登录博客网站学习吧！\n"
     context = {}
     context['url'] = ''
     context['comment_text'] = msg
