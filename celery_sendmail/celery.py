@@ -1,5 +1,5 @@
 from django.conf import settings
-from celery import Celery
+from celery import Celery, platforms
 import os
 
 # 为celery设置环境变量
@@ -10,4 +10,6 @@ app = Celery('celery_sendmail')
 app.config_from_object("celery_sendmail.celeryconfig")
 # 设置app自动加载任务
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+platforms.C_FORCE_ROOT=True
 
