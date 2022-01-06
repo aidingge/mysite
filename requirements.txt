@@ -3,7 +3,7 @@ anyjson==0.3.3
 asgiref==3.2.10
 billiard==3.3.0.23
 bootstrap-admin==0.4.4
-celery==3.1.26.post2
+celery==5.2.2
 celery-with-redis==3.0
 cffi==1.14.1
 cryptography==3.0
